@@ -17,7 +17,7 @@ public class MyMessageSender {
 	}
 
 	public void send(String string) {
-		connection.sendMessage(string);
+		connection.sendMessage(string.toUpperCase());
 	}
 	
 }
