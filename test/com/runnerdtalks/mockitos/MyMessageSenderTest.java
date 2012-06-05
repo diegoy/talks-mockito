@@ -17,4 +17,15 @@ public class MyMessageSenderTest {
 		verify(connection).sendMessage("UMA MENSAGEM");
 		
 	}
+	
+	@Test
+	public void behaviourTest() {
+		Connection connection = mock(Connection.class);
+		
+		MyMessageSender messageSender = new MyMessageSender(connection);
+		
+		messageSender.sendMultipleMessages("Mensagem Um", "Mensagem Dois");
+		
+		verify(connection, times(2)).sendMessage(anyString());
+	}
 }

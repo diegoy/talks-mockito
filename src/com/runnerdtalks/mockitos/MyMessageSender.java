@@ -1,11 +1,5 @@
 package com.runnerdtalks.mockitos;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.List;
 
 
 public class MyMessageSender {
@@ -16,8 +10,13 @@ public class MyMessageSender {
 		this.connection = connection;
 	}
 
-	public void send(String string) {
-		connection.sendMessage(string.toUpperCase());
+	public void send(String message) {
+		connection.sendMessage(message.toUpperCase());
 	}
-	
+
+	public void sendMultipleMessages(String... messages) {
+		for (String message : messages) {
+			send(message);
+		}
+	}
 }
