@@ -1,7 +1,5 @@
 package com.runnerdtalks.mockitos;
 
-
-
 public class MyMessageSender {
 	
 	private Connection connection;

@@ -1,9 +1,11 @@
 package com.runnerdtalks.mockitos;
 
 import static org.mockito.Mockito.*;
+import static org.mockito.BDDMockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.BDDMockito;
 
 public class MyMessageSenderTest {
 
@@ -31,5 +33,4 @@ public class MyMessageSenderTest {
 		verify(connection).sendMessage("MENSAGEM UM");
 		verify(connection).sendMessage("MENSAGEM DOIS");
 	}
-	
 }
