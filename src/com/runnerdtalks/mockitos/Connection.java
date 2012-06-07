@@ -10,9 +10,9 @@ import java.net.UnknownHostException;
 public class Connection {
 
 	private String hostAddress;
-	
+
 	private int port;
-	
+
 	private Socket socket;
 
 	private PrintStream printStream;
@@ -24,7 +24,7 @@ public class Connection {
 		this.hostAddress = hostAddress;
 		this.port = port;
 	}
-	
+
 	public boolean connect() {
 		try {
 			socket = createSocket();
@@ -36,19 +36,15 @@ public class Connection {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return false;
 	}
 
-	private Socket createSocket() throws UnknownHostException, IOException {
-		return new Socket(hostAddress, port);
-	}
-	
 	public void sendMessage(String message) {
 		printStream.print(message);
 		printStream.flush();
 	}
-	
+
 	public String readMessage() {
 		try {
 			return bufferedReader.readLine();
@@ -58,20 +54,24 @@ public class Connection {
 			return null;
 		}
 	}
-	
 
-	private BufferedReader createInputStream() throws IOException {
-		return new BufferedReader(new InputStreamReader(socket.getInputStream()));
+	protected Socket createSocket() throws UnknownHostException, IOException {
+		return new Socket(hostAddress, port);
 	}
 
-	private PrintStream createPrintStream() throws IOException {
+	protected BufferedReader createInputStream() throws IOException {
+		return new BufferedReader(
+				new InputStreamReader(socket.getInputStream()));
+	}
+
+	protected PrintStream createPrintStream() throws IOException {
 		return new PrintStream(socket.getOutputStream());
 	}
-	
+
 	private void close() {
 		try {
 			if (socket != null) {
-					socket.close();
+				socket.close();
 			}
 			if (printStream != null) {
 				printStream.close();
